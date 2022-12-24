@@ -8,7 +8,11 @@
 voting.pool
 </h1>
 
-Voting.pool é um app de votação 🗳️ com o front e o back sendo desenvoldido com ferramentas da linguagem JavaScript. Para ver o código do frontend acesse o [repositório](https://github.com/LuigiVanin/ac-voting.pool-front). Algumas das funções do app:
+Voting.pool é um app de votação 🗳️ com o front e o back sendo desenvoldido com ferramentas da linguagem JavaScript. Para ver o código do [backend](https://github.com/LuigiVanin/ac-voting.pool-back) e [frontend](https://github.com/LuigiVanin/ac-voting.pool-front) você pode acessar seus repos separados ou entrar nas pastas de `/server` e `/web`.
+
+Esse repo é um monorepo dos outros dois repos citados. O projeto em questão teve seu deploy feito na aws(EC2) usando NGINX e Docker.
+
+Algumas das funções do app:
 
 -   O app deve ser capaz de criar novos usuários.
 -   usuários podem logar e permanecer logados até efetivarem log out.
@@ -19,21 +23,9 @@ Voting.pool é um app de votação 🗳️ com o front e o back sendo desenvoldi
 
 <h3 align="center">
 
-<a  href="https://ac-voting-pool-front.vercel.app/"/>
+<a  href="http://ec2-18-231-116-229.sa-east-1.compute.amazonaws.com"/>
 
 «Acessar Demostração»
-
-</a>
-
-</h3>
-
-<h3 align="center">OU</h3>
-
-<h3 align="center">
-
-<a  href="https://github.com/LuigiVanin/ac-voting.pool-front"/>
-
-«Acessar Frontend»
 
 </a>
 
@@ -49,15 +41,13 @@ Preview 👓
 
 ## Como Rodar 🚀
 
-Para rodar o projeto localmente é necessário rodar tanto o front quanto o back, então é necessário baixar ambos os repositórios na sua máquina - para isso acesse os repos do [backend](https://github.com/LuigiVanin/ac-voting.pool-back) e do [frontend](https://github.com/LuigiVanin/ac-voting.pool-front) usando **git clone** ou baixando manualmente.
+Para rodar o projeto localmente é necessário rodar tanto o front quanto o back, então é necessário baixar ambos os repositórios na sua máquina ou baixar o monorepo - para isso use **git clone** ou baixe manualmente.
 
 ```bash
-> mkdir voting-pool && cd voting-pool
-> git clone https://github.com/LuigiVanin/ac-voting.pool-front.git
-> git clone https://github.com/LuigiVanin/ac-voting.pool-back.git
+> git clone https://github.com/LuigiVanin/voting.pool-monorepo.git
 ```
 
-Antes de tudo é importante saber que esse projeto usa-se de um banco de dados postgres, logo, é necessário que seja setado um antes de subir o backend. Após setar seu banco postgres, basta configurar o projeto - para isso basta seguir o exemplo de .env, o arquivo `.env.example`.
+Antes de mais nada, é importante lembrar-se que esse projeto necessita do uso de um banco de dados postgres. Por isso, antes mesmo de iniciar o backend é preciso realizar a configuração deste. Após ter feito isto, basta executar as devidas configurações Após setar seu banco postgres, basta configurar o projeto - para isso basta seguir o exemplo de .env, o arquivo `.env.example`.
 
 ### 1. Como rodar o Backend
 
@@ -93,6 +83,17 @@ Agora, para rodar a versão de desenvolvimento rodamos o seguinte script:
 > npm run dev
 ```
 
+### 3. Como rodar ambos usando Docker 🐋
+
+Na raiz do projeto rode:
+
+```
+> docker-compose -f docker-compose.test.yml up --build
+```
+
+Isso irá rodar a aplicação na sua porta 3000!
+
+**OBS.:** Vale salientar que tanto o back quanto o front tem suas aplicações dockerizadas, então é possível roda-las separadamente. O arquivo `docker-compose.test.yml` já dockeriza ambas aplicações e as junta em um porta usando nginx.
 <br />
 
 ## Como Testar 🧪
@@ -105,6 +106,12 @@ Os testes desses repo utilizam das libs do Jest(back) e Cypress(front) - para ro
 npm run test:e2e
 ```
 
+ou, usando docker compose da pasta `server/`(lembre de setar env file `.env.prod`):
+
+```bash
+> docker-compose -f docker-compose.ci.yml up --build --exit-code-from node_app
+```
+
 **No frontend**
 
 WIP 🚧🚧🚧
@@ -115,13 +122,13 @@ Essas features serão desenvolvidas conforme o dev(eu) estiver com tempo livre..
 
 -   [x] Adicionar um ReadMe
 -   [x] Adicionar compatibilidade com docekr
--   [ ] Criar um monorepo
--   [ ] Mudar restante das notificações para toasts
--   [ ] Corrigir bug da tela de resultado.
+-   [x] Criar um monorepo
+-   [x] Mudar restante das notificações para toasts
+-   [x] Corrigir bug da tela de resultado.
+-   [ ] Habilitar CI
 -   [ ] Finalizar testes de backend.
 -   [ ] Finalizar testes de Frontend
--   [ ] Futuramente fazer o host na railway
--   [ ] Migrar backend para a plataforma do [Render.com](https://www.notion.so/Ac-vooting-pool-2c86234e21dc4be397823a4d990a79a2)
+-   [x] Migrar toda a aplicação para aws EC2.
 
 ---
 
@@ -141,12 +148,12 @@ Essas features serão desenvolvidas conforme o dev(eu) estiver com tempo livre..
     <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
     <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white" />
     <img src="https://img.shields.io/badge/Git-E34F26?style=for-the-badge&logo=git&logoColor=white" />
-    <img src="https://img.shields.io/badge/Vercel-100000?style=for-the-badge&logo=vercel&logoColor=white" />
-    <img src="https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white" />
     <img src="https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white">
     <img src="https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e">
     <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white">
     <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white">
+    <img src="https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" />
+    <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white" />
 </p>
 
 ## Outras Ferramentas 📦
