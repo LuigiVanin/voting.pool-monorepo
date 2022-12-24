@@ -22,5 +22,5 @@ jobs:
                   file_name: .env
             - name: Test code
               run: docker-compose -f docker-compose.ci.yml up --build --exit-code-from node_app
-            # - name: Testing install and build
-            #   run: npm i && npm run build
+            - name: Testing install and build
+              run: cd server/ && npm i && npm run build
