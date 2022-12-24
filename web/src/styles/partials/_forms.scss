@@ -1,0 +1,19 @@
+@import "../mixins";
+
+form {
+    @include flex-center(column, 25px);
+    width: 100%;
+
+    a {
+        position: realtive;
+        font-size: 18px;
+        font-weight: 600;
+        color: $soft-green;
+
+        &:hover {
+            color: $main-green;
+        }
+    }
+}
+
+@include item-react(form);
